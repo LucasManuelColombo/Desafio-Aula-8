@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Despesas e Simulador de Financiamentos</title>
+    <style>
+        /* Estilize a interface conforme sua preferência */
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background: linear-gradient(90deg, #FFD700, #FF6347); /* Gradiente dourado e vermelho */
+            color: #333; /* Cor do texto */
+            margin: 0; /* Remova margens para evitar espaços brancos */
+            padding: 0; /* Remova preenchimentos */
+
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Calculadora de Despesas e Simulador de Financiamentos</h1>
+
+    <!-- Desafio 01: Cálculo e Estimativa de Despesas -->
+    <h2>Cálculo e Estimativa de Despesas</h2>
+    <label for="aluguel">Aluguel:</label>
+    <input type="number" id="aluguel">
+    <!-- Adicione campos para outros gastos (água, energia elétrica, etc.) -->
+    <button onclick="calcularGastos()">Calcular</button>
+    <p>Total de Gastos: <span id="totalGastos"></span></p>
+    <p>Média de Gastos: <span id="mediaGastos"></span></p>
+    <p>Estimativa Anual: <span id="estimativaAnual"></span></p>
+
+    <!-- Desafio 02: Simulador de Financiamentos -->
+    <h2>Simulador de Financiamentos</h2>
+    <label for="valor">Valor Necessário:</label>
+    <input type="number" id="valor">
+    <label for="taxa">Taxa de Juros ao Mês (%):</label>
+    <input type="number" id="taxa">
+    <label for="parcelas">Número de Meses:</label>
+    <input type="number" id="parcelas">
+    <button onclick="calcularParcelas()">Simular</button>
+    <p>Valor das Parcelas: <span id="valorParcelas"></span></p>
+
+    <script>
+        function calcularGastos() {
+            const aluguel = parseFloat(document.getElementById('aluguel').value);
+            // Adicione outros campos de entrada aqui
+
+            // Cálculos
+            const totalGastos = aluguel; // Adicione os outros gastos aqui
+            const mediaGastos = totalGastos; // Divida pelo número de gastos
+            const estimativaAnual = totalGastos * 12;
+
+            // Exiba os resultados
+            document.getElementById('totalGastos').textContent = `$${totalGastos.toFixed(2)}`;
+            document.getElementById('mediaGastos').textContent = `$${mediaGastos.toFixed(2)}`;
+            document.getElementById('estimativaAnual').textContent = `$${estimativaAnual.toFixed(2)}`;
+        }
+
+        function calcularParcelas() {
+            const valor = parseFloat(document.getElementById('valor').value);
+            const taxa = parseFloat(document.getElementById('taxa').value) / 100;
+            const parcelas = parseInt(document.getElementById('parcelas').value);
+
+            // Cálculo das parcelas
+            const montante = valor * (1 + taxa) ** parcelas;
+            const valorParcela = montante / parcelas;
+
+            // Exiba o resultado
+            document.getElementById('valorParcelas').textContent = `$${valorParcela.toFixed(2)}`;
+        }
+    </script>
+</body>
+</html>
